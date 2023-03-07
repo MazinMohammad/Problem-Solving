@@ -1,0 +1,50 @@
+E - Discount Fare
+
+Problem Statement
+There is a train going from Station AA to Station BB that costs XX yen (the currency of Japan).
+
+Also, there is a bus going from Station BB to Station CC that costs YY yen.
+
+Joisino got a special ticket. With this ticket, she can take the bus for half the fare if she travels from Station AA to Station BB by train and then travels from Station BB to Station CC by bus.
+
+How much does it cost to travel from Station AA to Station CC if she uses this ticket?
+
+Constraints
+1 \leq X,Y \leq 1001≤X,Y≤100
+YY is an even number.
+All values in input are integers.
+Input
+Input is given from Standard Input in the following format:
+
+XX YY
+Output
+If it costs xx yen to travel from Station AA to Station CC, print xx.
+
+Sample 1
+Inputcopy	Outputcopy
+81 58
+110
+The train fare is 8181 yen.
+The train fare is 5858 ⁄ 2=292=29 yen with the 5050% discount.
+Thus, it costs 110110 yen to travel from Station AA to Station CC.
+
+Sample 2
+Inputcopy	Outputcopy
+4 54
+31
+
+
+
+
+
+Solution:
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+   int X, Y;
+   cin >> X >> Y;
+   cout << X + Y/2;
+}

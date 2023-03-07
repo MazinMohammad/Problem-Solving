@@ -1,0 +1,55 @@
+D - Day of Takahashi
+
+
+Problem Statement
+In AtCoder Kingdom, Gregorian calendar is used, and dates are written in the "year-month-day" order, or the "month-day" order without the year.
+For example, May 33, 20182018 is written as 20182018-55-33, or 55-33 without the year.
+
+In this country, a date is called Takahashi when the month and the day are equal as numbers. For example, 55-55 is Takahashi.
+How many days from 20182018-11-11 through 20182018-aa-bb are Takahashi?
+
+Constraints
+aa is an integer between 11 and 1212 (inclusive).
+bb is an integer between 11 and 3131 (inclusive).
+20182018-aa-bb is a valid date in Gregorian calendar.
+Input
+Input is given from Standard Input in the following format:
+
+aa bb
+Output
+Print the number of days from 20182018-11-11 through 20182018-aa-bb that are Takahashi.
+
+Sample 1
+Inputcopy	Outputcopy
+5 5
+5
+There are five days that are Takahashi: 11-11, 22-22, 33-33, 44-44 and 55-55.
+
+Sample 2
+Inputcopy	Outputcopy
+2 1
+1
+There is only one day that is Takahashi: 11-11.
+
+Sample 3
+Inputcopy	Outputcopy
+11 30
+11
+There are eleven days that are Takahashi: 11-11, 22-22, 33-33, 44-44, 55-55, 66-66, 77-77, 88-88, 99-99, 1010-1010 and 1111-1111.
+
+Solution:
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+   int a, b;
+   cin >> a >> b;
+
+   if (a <= b)
+      cout << a;
+   else
+   cout << a-1;
+
+}

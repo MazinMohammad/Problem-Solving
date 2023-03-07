@@ -1,0 +1,38 @@
+F - New Year
+
+Problem Statement
+How many hours do we have until New Year at MM o'clock (24-hour notation) on 3030th, December?
+
+Constraints
+1≤M≤231≤M≤23
+MM is an integer.
+Input
+Input is given from Standard Input in the following format:
+
+MM
+Output
+If we have xx hours until New Year at MM o'clock on 3030th, December, print xx.
+
+Sample 1
+Inputcopy	Outputcopy
+21
+27
+We have 2727 hours until New Year at 2121 o'clock on 3030th, December.
+
+Sample 2
+Inputcopy	Outputcopy
+12
+36
+
+
+Solution:
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+   int M;
+   cin >> M;
+   cout << 48 - M;
+}

@@ -1,0 +1,54 @@
+C - Palindromic Number
+
+
+Problem Statement
+You are given a three-digit positive integer NN.
+Determine whether NN is a palindromic number.
+Here, a palindromic number is an integer that reads the same backward as forward in decimal notation.
+
+Constraints
+100≤N≤999100≤N≤999
+NN is an integer.
+Input
+Input is given from Standard Input in the following format:
+
+NN
+Output
+If NN is a palindromic number, print Yes; otherwise, print No.
+
+Sample 1
+Inputcopy	Outputcopy
+575
+Yes
+N=575N=575 is also 575575 when read backward, so it is a palindromic number. You should print Yes.
+
+Sample 2
+Inputcopy	Outputcopy
+123
+No
+N=123N=123 becomes 321321 when read backward, so it is not a palindromic number. You should print No.
+
+Sample 3
+Inputcopy	Outputcopy
+812
+No
+
+
+
+Solution:
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+   int n;
+   cin >> n;
+
+   if (n/10/10 == n%10)
+      cout << "Yes";
+   else
+      cout << "No";
+
+}
+
