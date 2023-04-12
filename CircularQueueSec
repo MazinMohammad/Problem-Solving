@@ -1,0 +1,49 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+struct node{
+    int data;
+    node *next;
+};
+
+node *front = NULL;
+node *rear = NULL;
+node *temp = NULL;
+
+void Enqueue(){
+    int val;
+    cout << "Ensert the element in queue :" << endl;
+    cin >> val;
+    if (rear == NULL){
+        rear = new node();
+        rear->next = front;
+        rear->data = val;
+        front = rear;
+    }
+    else{
+        temp = new node();
+        rear->next = temp;
+        temp->data = val;
+        temp->next = front;
+        rear = temp;
+    }
+}
+
+void display(){
+    temp = front;
+    cout << "Elements of the queue are: "
+    do {
+        cout << temp->data << "\t";
+        temp = temp->next;
+    } while (temp != front);
+    cout << endl;
+}
+
+
+int main() {
+    for (int i = 0; i < 5; i++)
+        Enqueue();
+    
+    display();
+}
