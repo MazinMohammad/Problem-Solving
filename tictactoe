@@ -1,0 +1,166 @@
+# Function to print the board
+def print_board(board):
+
+    # Initialize a counter to keep track of the row index
+    i = 0
+
+    # Iterate over each row in the board
+    for row in board:
+
+        # Print the row elements separated by " | "
+        print(" | ".join(row))
+        i+=1
+
+        # Print a separator line after each row except the last one
+        if i < len(board):
+            print("-" * 10)
+
+# Function to check for a winner
+def check_winner(board):
+    # Check rows, columns and diagonals
+    for row in board:
+        if row[0] == row[1] == row[2] and row[0] != ' ':
+            return row[0]
+    for col in range(3):
+        if board[0][col] == board[1][col] == board[2][col] and board[0][col] != ' ':
+            return board[0][col]
+    if board[0][0] == board[1][1] == board[2][2] and board[0][0] != ' ':
+        return board[0][0]
+    if board[0][2] == board[1][1] == board[2][0] and board[0][2] != ' ':
+        return board[0][2]
+    
+    # Return None if there is no winner
+    return None
+
+# Function to check if the board is full
+def is_full(board):
+    for row in board:
+        if ' ' in row:
+            return False
+    return True
+
+# Minimax algorithm implementation
+def minimax(board, depth, is_maximizing):
+
+    # Check if there is a winner
+    winner = check_winner(board)
+    if winner == 'X':
+        return -1
+    if winner == 'O':
+        return 1
+    
+    # Check if the board is full (tie)
+    if is_full(board):
+        return 0
+
+    # Maximizing player's move (Computer's move)
+    if is_maximizing:
+
+        # Initialize best_score to negative infinity
+        best_score = -float('inf')
+
+        # Iterate over each cell in the board
+        for i in range(3):
+            for j in range(3):
+                if board[i][j] == ' ':
+                    board[i][j] = 'O'
+                    # Recursively call minimax for the opponent's move
+                    score = minimax(board, depth + 1, False)
+                    # Undo the move
+                    board[i][j] = ' '
+                    # Update best_score with the maximum score
+                    best_score = max(score, best_score)
+        return best_score
+    
+    # Minimizing player's move (Human's move)
+    else:
+        best_score = float('inf')
+        # Iterate over each cell in the board
+        for i in range(3):
+            for j in range(3):
+                if board[i][j] == ' ':
+                    board[i][j] = 'X'
+                    # Recursively call minimax for the opponent's move
+                    score = minimax(board, depth + 1, True)
+                    board[i][j] = ' '
+                    # Update best_score with the minimum score
+                    best_score = min(score, best_score)
+        return best_score
+
+# Function to find the best move
+def best_move(board):
+    best_score = -float('inf')
+    move = None
+    # Iterate over each cell in the board
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] == ' ':
+                board[i][j] = 'O'
+                # Get the score of this move using minimax
+                score = minimax(board, 0, False)
+                board[i][j] = ' '
+                # If the score is better than the best score, update best score and move
+                if score > best_score:
+                    best_score = score
+                    move = (i, j)
+    return move
+
+# Main game loop
+def play_game():
+    # Initialize an empty board
+    board = [[' ' for _ in range(3)] for _ in range(3)]
+    # Print the initial empty board
+    print_board(board)
+
+    while True:
+        # Human move
+        try:
+            row = int(input("Enter row (0, 1, 2): "))
+            col = int(input("Enter col (0, 1, 2): "))
+            if row not in range(3) or col not in range(3):
+                print("Invalid input, please enter numbers between 0 and 2.")
+                continue
+        except ValueError:
+            print("Invalid input, please enter numbers between 0 and 2.")
+            continue
+        
+        # Check if the cell is empty
+        if board[row][col] == ' ':
+            # Make the move
+            board[row][col] = 'X'
+        else:
+            print("Invalid move, try again.")
+            continue
+
+        # Print the board after the human move
+        print_board(board)
+        
+        # Check if there is a winner or if the board is full (tie)
+        if check_winner(board) or is_full(board):
+            break
+
+        # Computer move
+        move = best_move(board)
+        if move:
+            board[move[0]][move[1]] = 'O'
+        print("Computer move:")
+        # Print the board after the computer move
+        print_board(board)
+        
+        # Check if there is a winner or if the board is full (tie)
+        if check_winner(board) or is_full(board):
+            break
+
+    # Check the final state to determine the winner or if it's a tie
+    winner = check_winner(board)
+    if winner:
+        print(f"{winner} wins!")
+    else:
+        print("It's a tie!")
+
+# Start the game
+play_game()
+
+
+# Start the game
+play_game()
